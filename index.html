@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>Noty MetroUI Theme</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Noty MetroUI Theme">
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic&amp;subset=latin,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+	<style type="text/css">
+		html {
+			height: 100%;
+			width: 100%;
+		}
+		body { 
+		  font-family: 'PT Sans', Tahoma, Arial, serif; line-height: 13px 
+		}
+	</style>
+	
+	<!-- BUTTON STYLES -->
+	<link rel="stylesheet" type="text/css" href="./noty/themes/metro.css"/>
+
+</head>
+<body>
+  <div class="container">
+  	<div id="customContainer"></div>
+  </div>
+  
+  <script src="jquery-1.7.2.min.js"></script>
+  
+  <!-- noty -->
+  <script type="text/javascript" src="./noty/jquery.noty.js"></script>
+  
+  <!-- layouts -->
+  <script type="text/javascript" src="./noty/layouts/bottom.js"></script>
+  <script type="text/javascript" src="./noty/layouts/bottomCenter.js"></script>
+  <script type="text/javascript" src="./noty/layouts/bottomLeft.js"></script>
+  <script type="text/javascript" src="./noty/layouts/bottomRight.js"></script>
+  <script type="text/javascript" src="./noty/layouts/center.js"></script>
+  <script type="text/javascript" src="./noty/layouts/centerLeft.js"></script>
+  <script type="text/javascript" src="./noty/layouts/centerRight.js"></script>
+  <script type="text/javascript" src="./noty/layouts/inline.js"></script>
+  <script type="text/javascript" src="./noty/layouts/top.js"></script>
+  <script type="text/javascript" src="./noty/layouts/topCenter.js"></script>
+  <script type="text/javascript" src="./noty/layouts/topLeft.js"></script>
+  <script type="text/javascript" src="./noty/layouts/topRight.js"></script>
+
+  <!-- themes -->
+  <script type="text/javascript" src="./noty/themes/metro.js"></script>
+
+  <script type="text/javascript">
+	function showNoty(_type, _text, _layout) {
+		var options = {
+			text: _text,
+			type: _type,
+			layout: _layout,
+			dismissQueue: true,
+			theme: 'metro',
+			closeWith: ['button'],
+			buttons: [
+				{addClass: 'btn btn-success', onClick: function($noty) {
+					$noty.close();
+					noty({dismissQueue: true, force: true, layout: 'center', theme: 'metro', text: 'You clicked "Ok" button', type: 'success'});
+				  }
+				},
+				{addClass: 'btn btn-cancel', onClick: function($noty) {
+					$noty.close();
+					noty({dismissQueue: true, force: true, layout: 'center', theme: 'metro', text: 'You clicked "Cancel" button', type: 'error'});
+				  }
+				}
+			]
+		};
+		noty(options);
+		var options = {
+			text: _text,
+			type: _type,
+			layout: _layout,
+			dismissQueue: true,
+			theme: 'metro',
+			closeWith: ['button']
+		}
+		noty(options);
+
+		
+  	};
+	
+	$(document).ready(function() {
+		var types = [
+		//	'alert', 
+			'success'
+		//	'error', 
+		//	'warning', 
+		//	'information', 
+		//	'confirmation'
+		];
+		var layouts = [
+			'bottom', 
+			//'bottomCenter', 
+			//'bottomLeft', 
+			//'bottomRight', 
+			// 'center', 
+			'centerLeft', 
+			'centerRight', 
+			// 'inline', 
+			'top' 
+			//'topCenter',
+			//'topLeft', 
+			//'topRight'
+		];
+		
+		for (var type in types) {
+			for (var layout in layouts) {
+				showNoty(types[type], types[type] + " " + layouts[layout], layouts[layout]);
+			}
+		}
+	});
+  
+  
+  function generate(type) {
+  	var n = noty({
+  		text: type,
+  		type: type,
+		dismissQueue: true,
+  		layout: 'top',
+  		theme: 'metro',
+		closeWith: ['button'], // ['click', 'button', 'hover']
+		/*
+		buttons: [
+        {addClass: 'btn btn-success', onClick: function($noty) {
+            $noty.close();
+            noty({dismissQueue: true, force: true, layout: layout, theme: 'defaultTheme', text: 'You clicked "Ok" button', type: 'success'});
+          }
+        },
+        {addClass: 'btn btn-cancel', onClick: function($noty) {
+            $noty.close();
+            noty({dismissQueue: true, force: true, layout: layout, theme: 'defaultTheme', text: 'You clicked "Cancel" button', type: 'error'});
+          }
+        }
+      ]
+	  */
+  	});
+  	console.log('html: '+n.options.id);
+  }
+
+  function generateAll() {
+    generate('alert');
+    
+  }
+  
+  
+  
+  </script>
+</body>
+</html>
